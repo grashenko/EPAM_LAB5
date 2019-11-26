@@ -9,8 +9,8 @@ namespace WebDriverTest
         public static string searchInputTagId = "tbSrch";
         public static string firstProductPath = "//*[@class='autocomplete-list']/li[1]/a[1]";
         public static string addToCartButtonPath = "//*[@class='cart-btn-wrap']/button[1]";
-        public static string firstSizeButton = "//*[@class='size-list']/label[1]";
-        public static string firstProductInCartPath = "//*[@class='basket-list-items']/div[1]/div[1]/div[1]/a[1]/span[1]";
+        public static string firstSizeButton = "//*[@class='j-size-list size-list j-smart-overflow-instance']/label[1]";
+        public static string firstProductInCartPath = "//*[@class='basket-list-items']/div[1]/div[1]/div[1]/a[1]/span[2]";
 
         public static void AddToCart(string productName, IWebDriver driver)
         {
@@ -20,6 +20,9 @@ namespace WebDriverTest
             Thread.Sleep(3000);
 
             driver.FindElement(By.XPath(firstProductPath)).Click();
+            Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath(firstSizeButton)).Click();
             Thread.Sleep(3000);
 
             driver.FindElement(By.XPath(addToCartButtonPath)).Click();

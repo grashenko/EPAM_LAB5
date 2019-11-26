@@ -8,7 +8,7 @@ namespace WebDriverTest
     {
         private IWebDriver _driver;
         private string _productName;
-        private string _firstSerchedProduct = "/ Джинсы - MOM80";
+        private string _firstSerchedProduct = "/ Джинсы - MOM";
 
         [SetUp]
         public void Setup()
@@ -29,7 +29,7 @@ namespace WebDriverTest
         public void CheckAddingToCart()
         {
             string productTitle = CartPage.CheckAddingToCart(_productName, _driver);
-            bool expected = productTitle == _productName;
+            bool expected = productTitle == _firstSerchedProduct;
             Assert.IsTrue(expected);
         }
 
