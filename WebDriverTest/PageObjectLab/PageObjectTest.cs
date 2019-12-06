@@ -23,24 +23,25 @@ namespace PageObjectLab
         }
 
         [Test]
-        public void AddingFirstTwoProductsToComparisonTest()
+        public void AddingProductToBasket()
         {
+            string productName = "Джинсы";
             var productsPage = new ProductsPage(driver);
             productsPage.GoToPage();
-            productsPage.AddTwoProducts();
-            var comparisonPage = productsPage.GoToComparisonPage();
-            var productsAmount = comparisonPage.CountProudcts();
-            Assert.IsTrue(productsAmount == 2);
+            productsPage.AddToCart(productName);
+            var basketPage = productsPage.GoToBasketPage();
+            var productInBasket = basketPage.CheckProduct();
+            Assert.IsTrue(productName.Contains(productInBasket));
         }
 
         [Test]
-        public void CheckMaxPriceFilter()
+        public void CheckBrandFilter()
         {
             var productsPage = new ProductsPage(driver);
             productsPage.GoToPage();
-            productsPage.ApplyMaxPriceFilter(40);
-            var isPriceMax = productsPage.CheckIfPriceIsMax(40);
-            Assert.IsTrue(isPriceMax);
+            var selectedBrand = productsPage.ApplyFirstBrandFilter();
+            var firstBrand = productsPage.CheckFirstProductBrand();
+            Assert.IsTrue(selectedBrand.Contains(firstBrand.Split("/")[0].Trim()));
         }
     }
 }

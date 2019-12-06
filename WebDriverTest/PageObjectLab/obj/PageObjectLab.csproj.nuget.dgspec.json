@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Downloads\\bstu-testing-master (1)\\bstu-testing-master\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj": {}
+    "F:\\GitHub\\EPAM_LAB5\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Downloads\\bstu-testing-master (1)\\bstu-testing-master\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj": {
+    "F:\\GitHub\\EPAM_LAB5\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\bstu-testing-master (1)\\bstu-testing-master\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj",
+        "projectUniqueName": "F:\\GitHub\\EPAM_LAB5\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj",
         "projectName": "PageObjectLab",
-        "projectPath": "C:\\Users\\Admin\\Downloads\\bstu-testing-master (1)\\bstu-testing-master\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj",
+        "projectPath": "F:\\GitHub\\EPAM_LAB5\\WebDriverTest\\PageObjectLab\\PageObjectLab.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Downloads\\bstu-testing-master (1)\\bstu-testing-master\\WebDriverTest\\PageObjectLab\\obj\\",
+        "outputPath": "F:\\GitHub\\EPAM_LAB5\\WebDriverTest\\PageObjectLab\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -15,54 +15,69 @@ namespace PageObjectLab.PageObjects
             this.driver = driver;
         }
 
-        private string productsComparisonSelector = "div[class='div-add-to-compare-link']";
-        private string comparisonXPath = "//*[@id='masthead']/div[1]/div[2]/ul[1]/li/a";
-        private string productPricesSelector = "span[class='woocommerce-Price-amount amount']";
+        private string filterBrandCheckBox = "//*[@id='brand_list_left']/li[1]";
+        private string firstProductBrand = "//*[@class='dtlist-inner-brand-name']/strong[1]";
+        private string brandButton = "div[class='filterblock brand show']";
 
-        public void AddTwoProducts()
+        public string searchInputTagId = "tbSrch";
+        public string firstProductPath = "//*[@class='autocomplete-list']/li[1]/a[1]";
+        public string addToCartButtonPath = "//*[@class='cart-btn-wrap']/button[1]";
+        public string firstSizeButton = "//*[@class='j-size-list size-list j-smart-overflow-instance']/label[1]";
+        public string firstProductInCartPath = "//*[@class='basket-list-items']/div[1]/div[1]/div[1]/a[1]/span[2]";
+
+        public void AddToCart(string productName)
         {
-            Thread.Sleep(5000);
-            var products = driver.FindElements(By.CssSelector(productsComparisonSelector));
-            products[0].Click();
-            products[1].Click();
+            IWebElement searchElement = driver.FindElement(By.Id(searchInputTagId));
+            SlowType(searchElement, productName);
+            Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath(firstProductPath)).Click();
+            Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath(firstSizeButton)).Click();
+            Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath(addToCartButtonPath)).Click();
+            Thread.Sleep(3000);
         }
 
-        public void ApplyMaxPriceFilter(double max)
+        public void SlowType(IWebElement webElement, string text)
         {
-            Thread.Sleep(5000);
-            string filterId = "filter-price-end";
-            var filter = driver.FindElement(By.Id(filterId));
-            filter.Click();
-            filter.SendKeys(max.ToString());
-            filter.Submit();
-        }
-
-        public bool CheckIfPriceIsMax(double max)
-        {
-            Thread.Sleep(5000);
-            var productPricesBlocks = driver.FindElements(By.CssSelector(productPricesSelector));
-            var productPrices = new List<double>();
-            foreach (var productPriceBlock in productPricesBlocks)
+            webElement.Click();
+            webElement.Clear();
+            foreach (var key in text)
             {
-                var productPriceString = productPriceBlock.GetAttribute("innerHTML");
-                productPriceString = productPriceString.Replace(" р.", "");
-                productPriceString = productPriceString.Replace('.', ',');
-                productPrices.Add(double.Parse(productPriceString));
+                webElement.SendKeys(key.ToString());
+                Thread.Sleep(150);
             }
+        }
 
-            return !productPrices.Any(x => x > max);
+        public string ApplyFirstBrandFilter()
+        {
+            Thread.Sleep(3000);
+            var filterButton = driver.FindElement(By.CssSelector(this.brandButton));
+            filterButton.Click();
+            Thread.Sleep(3000);
+            var brand = driver.FindElement(By.XPath(this.filterBrandCheckBox));
+            brand.Click();
+            return brand.Text;
+        }
+
+        public string CheckFirstProductBrand()
+        {
+            Thread.Sleep(2000);
+            var firstProduct = driver.FindElement(By.XPath(this.firstProductBrand));
+            return firstProduct.Text;
         }
 
         public void GoToPage()
         {
-            driver.Navigate().GoToUrl("https://www.ttn.by/electronics/telephony_and_communication/smartphones");
+            driver.Navigate().GoToUrl("https://www.wildberries.by/catalog/muzhchinam/odezhda/bryuki-i-shorty");
         }
 
-        public ComparisonPage GoToComparisonPage()
+        public BasketPage GoToBasketPage()
         {
-            var comparison = driver.FindElement(By.XPath(comparisonXPath));
-            comparison.Click();
-            return new ComparisonPage(driver);
+            return new BasketPage(driver);
         }
     }
 }
