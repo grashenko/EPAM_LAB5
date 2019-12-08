@@ -31,7 +31,7 @@ namespace PageObjectLab
             productsPage.AddToCart(productName);
             var basketPage = productsPage.GoToBasketPage();
             var productInBasket = basketPage.CheckProduct();
-            Assert.IsTrue(productName.Contains(productInBasket));
+            Assert.IsTrue(productInBasket.Contains(productName));
         }
 
         [Test]
